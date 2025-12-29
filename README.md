@@ -35,7 +35,9 @@ The system consists of \*\*four independent nodes\*\* communicating over UDP por
 \### Message Format
 
 ```
+
 <topic>,<data>
+
 ```
 
 
@@ -43,9 +45,11 @@ The system consists of \*\*four independent nodes\*\* communicating over UDP por
 \### Examples
 
 ```
-mot\\\\vel,-39.4
+
+mot\_vel,-39.4
 
 estop,1
+
 ```
 
 
@@ -76,6 +80,8 @@ estop,1
 
   - `0` → SAFE
 
+
+
   - `1` → STOP
 
 \- Publishes at random intervals (every few seconds)
@@ -91,6 +97,8 @@ estop,1
 \- Behavior:
 
   - When `estop = 1`, motor commands are ignored and velocity is forced to `0`
+
+
 
   - When `estop = 0`, motor commands are accepted
 
@@ -122,25 +130,25 @@ estop,1
 
 macushla-udp-pubsub/
 
-├── node1\\\\\\\_python\\\\\\\_publisher/
+├── node1\_python\_publisher/
 
-│ └── mot\\\\\\\_vel\\\\\\\_publisher.py
+│ └── mot\_vel\_publisher.py
 
-├── node2\\\\\\\_cpp\\\\\\\_publisher/
+├── node2\_cpp\_publisher/
 
-│ └── estop\\\\\\\_publisher.cpp
+│ └── estop\_publisher.cpp
 
-├── node3\\\\\\\_python\\\\\\\_subscriber/
+├── node3\_python\_subscriber/
 
 │ └── controller.py
 
-├── node4\\\\\\\_cpp\\\\\\\_subscriber/
+├── node4\_cpp\_subscriber/
 
-│ └── safety\\\\\\\_logger.cpp
+│ └── safety\_logger.cpp
 
 ├── README.md
 
-└── safety\\\\\\\_log.txt
+└── safety\_log.txt
 
 ```
 
@@ -169,9 +177,12 @@ Start this first.
 
 
 ```bash
-g++ node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger.cpp -o node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger
 
-./node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger
+g++ node4\_cpp\_subscriber/safety\_logger.cpp -o node4\_cpp\_subscriber/safety\_logger
+
+./node4\_cpp\_subscriber/safety\_logger
+
+
 
 ```
 
@@ -181,7 +192,7 @@ g++ node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger.cpp -o node4\\\\\\\_
 
 ```bash
 
-python3 node3\\\\\\\_python\\\\\\\_subscriber/controller.py
+python3 node3\_python\_subscriber/controller.py
 
 ```
 
@@ -191,7 +202,7 @@ python3 node3\\\\\\\_python\\\\\\\_subscriber/controller.py
 
 ```bash
 
-python3 node1\\\\\\\_python\\\\\\\_publisher/mot\\\\\\\_vel\\\\\\\_publisher.py
+python3 node1\_python\_publisher/mot\_vel\_publisher.py
 
 ```
 
@@ -201,9 +212,11 @@ python3 node1\\\\\\\_python\\\\\\\_publisher/mot\\\\\\\_vel\\\\\\\_publisher.py
 
 ```bash
 
-g++ node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher.cpp -o node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher
+g++ node2\_cpp\_publisher/estop\_publisher.cpp -o node2\_cpp\_publisher/estop\_publisher
 
-./node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher
+./node2\_cpp\_publisher/estop\_publisher
+
+
 
 ```
 
@@ -213,35 +226,47 @@ g++ node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher.cpp -o node2\\\\\\\
 
 \## Expected Behavior
 
-Node 3 prints motor velocity values while system is SAFE
+\- Node 3 prints motor velocity values while the system is SAFE
 
 
 
-When estop,1 is published:
+\- When `estop,1` is published:
 
- - Node 3 stops printing motor velocity and forces velocity to 0
+ - Node 3 stops printing motor velocity and forces velocity to `0`
+
+
 
  - Node 4 logs a transition to STOP
 
 
 
-When estop,0 is published:
+\- When `estop,0` is published:
 
-\- Node 3 resumes motor velocity output
+ - Node 3 resumes motor velocity output
+
+
 
  - Node 4 logs a transition back to SAFE
 
 
 
-Example log output (safety\_log.txt):
+Example log output (`safety\_log.txt`):
+
+
 
 ```
 
 \[1532 ms] UNKNOWN -> SAFE
 
+
+
 \[4210 ms] SAFE -> STOP
 
+
+
 \[8120 ms] STOP -> SAFE
+
+
 
 ```
 
@@ -249,15 +274,17 @@ Example log output (safety\_log.txt):
 
 \## Notes
 
-UDP broadcast is used for simplicity and loose coupling between nodes
+\- UDP broadcast is used for simplicity and loose coupling between nodes
 
-No node assumes knowledge of other nodes’ existence
+\- No node assumes knowledge of other nodes’ existence
 
-The architecture resembles real robotic systems where safety channels override motion commands
+\- The architecture resembles real robotic systems where safety channels override motion commands
 
 
 
 \## Author
 
 Shaul Duek
+
+
 
