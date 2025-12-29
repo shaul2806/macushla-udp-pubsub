@@ -38,6 +38,7 @@ estop,1
 ### Node 2 — C++ Publisher (Emergency Stop)
 - Publishes messages on topic `estop`
 - Values:
+
   - `0` → SAFE
 
   - `1` → STOP
@@ -47,6 +48,7 @@ estop,1
 - Subscribes to `mot_vel` and `estop`
 - Uses an event-driven loop (`select`) to remain responsive
 - Behavior:
+
   - When `estop = 1`, motor commands are ignored and velocity is forced to `0`
 
   - When `estop = 0`, motor commands are accepted
@@ -115,11 +117,13 @@ g++ node2_cpp_publisher/estop_publisher.cpp -o node2_cpp_publisher/estop_publish
 - Node 3 prints motor velocity values while the system is SAFE
 
 - When `estop,1` is published:
+
  - Node 3 stops printing motor velocity and forces velocity to `0`
 
  - Node 4 logs a transition to STOP
 
 - When `estop,0` is published:
+
  - Node 3 resumes motor velocity output
 
  - Node 4 logs a transition back to SAFE
@@ -132,7 +136,6 @@ Example log output (`safety_log.txt`):
 [4210 ms] SAFE -> STOP
 
 [8120 ms] STOP -> SAFE
-
 ```
 
 ## Notes
