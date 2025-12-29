@@ -1,3 +1,9 @@
+# Build artifacts
+*.exe
+
+# Runtime logs
+*.txt
+
 # IDEs
 .idea/
 .vscode/
