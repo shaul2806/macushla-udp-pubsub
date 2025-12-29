@@ -43,11 +43,9 @@ The system consists of \*\*four independent nodes\*\* communicating over UDP por
 \### Examples
 
 ```
-
-mot\_vel,-39.4
+mot\\\\vel,-39.4
 
 estop,1
-
 ```
 
 
@@ -124,25 +122,25 @@ estop,1
 
 macushla-udp-pubsub/
 
-├── node1\_python\_publisher/
+├── node1\\\\\\\_python\\\\\\\_publisher/
 
-│ └── mot\_vel\_publisher.py
+│ └── mot\\\\\\\_vel\\\\\\\_publisher.py
 
-├── node2\_cpp\_publisher/
+├── node2\\\\\\\_cpp\\\\\\\_publisher/
 
-│ └── estop\_publisher.cpp
+│ └── estop\\\\\\\_publisher.cpp
 
-├── node3\_python\_subscriber/
+├── node3\\\\\\\_python\\\\\\\_subscriber/
 
 │ └── controller.py
 
-├── node4\_cpp\_subscriber/
+├── node4\\\\\\\_cpp\\\\\\\_subscriber/
 
-│ └── safety\_logger.cpp
+│ └── safety\\\\\\\_logger.cpp
 
 ├── README.md
 
-└── safety\_log.txt
+└── safety\\\\\\\_log.txt
 
 ```
 
@@ -171,9 +169,9 @@ Start this first.
 
 
 ```bash
-g++ node4\_cpp\_subscriber/safety\_logger.cpp -o node4\_cpp\_subscriber/safety\_logger
+g++ node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger.cpp -o node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger
 
-./node4\_cpp\_subscriber/safety\_logger
+./node4\\\\\\\_cpp\\\\\\\_subscriber/safety\\\\\\\_logger
 
 ```
 
@@ -183,7 +181,7 @@ g++ node4\_cpp\_subscriber/safety\_logger.cpp -o node4\_cpp\_subscriber/safety\_
 
 ```bash
 
-python3 node3\_python\_subscriber/controller.py
+python3 node3\\\\\\\_python\\\\\\\_subscriber/controller.py
 
 ```
 
@@ -193,7 +191,7 @@ python3 node3\_python\_subscriber/controller.py
 
 ```bash
 
-python3 node1\_python\_publisher/mot\_vel\_publisher.py
+python3 node1\\\\\\\_python\\\\\\\_publisher/mot\\\\\\\_vel\\\\\\\_publisher.py
 
 ```
 
@@ -203,9 +201,9 @@ python3 node1\_python\_publisher/mot\_vel\_publisher.py
 
 ```bash
 
-g++ node2\_cpp\_publisher/estop\_publisher.cpp -o node2\_cpp\_publisher/estop\_publisher
+g++ node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher.cpp -o node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher
 
-./node2\_cpp\_publisher/estop\_publisher
+./node2\\\\\\\_cpp\\\\\\\_publisher/estop\\\\\\\_publisher
 
 ```
 
